@@ -1,0 +1,23 @@
+@utility z-canvas {
+  z-index: var(--z-canvas);
+}
+
+@utility z-content {
+  z-index: var(--z-content);
+}
+
+@utility z-navigation {
+  z-index: var(--z-navigation);
+}
+
+@utility z-menu {
+  z-index: var(--z-menu);
+}
+
+@utility z-preloader {
+  z-index: var(--z-preloader);
+}
+
+@utility z-grid {
+  z-index: var(--z-grid);
+}

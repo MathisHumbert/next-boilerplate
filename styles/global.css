@@ -1,0 +1,96 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  user-select: none;
+}
+
+html {
+  font-size: calc(100vw / var(--sizes-mobile) * 10);
+  font-family: var(--font-satoshi);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  line-height: 1;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  background: var(--color-black);
+  color: var(--color-white);
+  pointer-events: none;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: calc(100vw / var(--sizes-desktop) * 10);
+  }
+}
+
+html.visible {
+  pointer-events: all;
+}
+
+html,
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#scroll-wrapper {
+  position: fixed;
+  overflow-x: clip;
+  overflow-y: hidden;
+  height: 100vh;
+  height: 100dvh;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+html.loaded #scroll-wrapper {
+  position: relative;
+  overflow-y: scroll;
+}
+
+#scroll-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+#scroll-content {
+  position: relative;
+}
+
+main {
+  position: relative;
+  width: 100vw;
+  height: 100%;
+  z-index: var(--z-content);
+}
+
+.page {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+a {
+  color: inherit;
+  outline: none;
+  text-decoration: none;
+}
+
+button {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  outline: none;
+}
+
+canvas {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: var(--z-canvas);
+}

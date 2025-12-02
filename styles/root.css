@@ -1,0 +1,51 @@
+@theme {
+  --color-white: rgb(222, 222, 222);
+  --color-black: rgb(30, 30, 30);
+
+  --font-satoshi: "Satoshi", sans-serif;
+  --font-sans: var(--font-satoshi);
+
+  --breakpoint-md: 768px;
+
+  --sizes-desktop: 1440;
+  --sizes-mobile: 375;
+
+  --grid-count: 6;
+  --grid-gutter: 2rem;
+  --grid-margin: 2.4rem;
+  --grid-width: calc(100vw - (2 * var(--grid-margin)));
+  --grid-column-width: calc(
+    (var(--grid-width) - ((var(--grid-count) - 1) * var(--grid-gutter))) /
+      var(--grid-count)
+  );
+
+  --z-canvas: 1;
+  --z-content: 2;
+  --z-navigation: 3;
+  --z-menu: 4;
+  --z-preloader: 5;
+  --z-grid: 6;
+
+  --ease-in-out: cubic-bezier(0.7, 0, 0.3, 1);
+  --expo-in-out: cubic-bezier(0.9, 0, 0.1, 1);
+  --ease-out: cubic-bezier(0.39, 0.575, 0.565, 1);
+  --expo-out: cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+@media (min-width: 768px) {
+  :root {
+    --grid-count: 12;
+    --grid-gutter: 2rem;
+    --grid-margin: 3.2rem;
+  }
+}
+
+@font-face {
+  font-family: "Satoshi";
+  src:
+    url("/fonts/satoshi-medium.woff2") format("woff2"),
+    url("/fonts/satoshi-medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}

@@ -1,0 +1,32 @@
+@utility scroll-wrapper {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@utility cover {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+@utility img-cover {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+@utility center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

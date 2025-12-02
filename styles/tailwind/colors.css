@@ -1,0 +1,27 @@
+@utility bg-white {
+  background-color: var(--color-white);
+}
+
+@utility bg-black {
+  background-color: var(--color-black);
+}
+
+@utility bg-red-10 {
+  background-color: rgba(255, 0, 0, 0.1);
+}
+
+@utility text-white {
+  color: var(--color-white);
+}
+
+@utility text-black {
+  color: var(--color-black);
+}
+
+@utility border-white {
+  border-color: var(--color-white);
+}
+
+@utility border-black {
+  border-color: var(--color-black);
+}

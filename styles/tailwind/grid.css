@@ -1,0 +1,801 @@
+@utility grid-layout {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-count), 1fr);
+  gap: var(--grid-gutter);
+}
+
+@utility px-grid {
+  padding-left: var(--grid-margin);
+  padding-right: var(--grid-margin);
+}
+
+@utility py-grid {
+  padding-top: var(--grid-margin);
+  padding-bottom: var(--grid-margin);
+}
+
+@utility p-grid {
+  padding: var(--grid-margin);
+}
+
+@utility top-grid {
+  top: var(--grid-margin);
+}
+
+@utility right-grid {
+  right: var(--grid-margin);
+}
+
+@utility bottom-grid {
+  bottom: var(--grid-margin);
+}
+
+@utility left-grid {
+  left: var(--grid-margin);
+}
+
+@utility gap-grid {
+  gap: var(--grid-gutter);
+}
+
+@utility w-col-1 {
+  width: calc((1 * var(--grid-column-width)) + ((1 - 1) * var(--grid-gutter)));
+}
+
+@utility w-col-2 {
+  width: calc((2 * var(--grid-column-width)) + ((2 - 1) * var(--grid-gutter)));
+}
+
+@utility w-col-3 {
+  width: calc((3 * var(--grid-column-width)) + ((3 - 1) * var(--grid-gutter)));
+}
+
+@utility w-col-4 {
+  width: calc((4 * var(--grid-column-width)) + ((4 - 1) * var(--grid-gutter)));
+}
+
+@utility w-col-5 {
+  width: calc((5 * var(--grid-column-width)) + ((5 - 1) * var(--grid-gutter)));
+}
+
+@utility w-col-6 {
+  width: calc((6 * var(--grid-column-width)) + ((6 - 1) * var(--grid-gutter)));
+}
+
+@utility w-col-7 {
+  width: calc((7 * var(--grid-column-width)) + ((7 - 1) * var(--grid-gutter)));
+}
+
+@utility w-col-8 {
+  width: calc((8 * var(--grid-column-width)) + ((8 - 1) * var(--grid-gutter)));
+}
+
+@utility w-col-9 {
+  width: calc((9 * var(--grid-column-width)) + ((9 - 1) * var(--grid-gutter)));
+}
+
+@utility w-col-10 {
+  width: calc(
+    (10 * var(--grid-column-width)) + ((10 - 1) * var(--grid-gutter))
+  );
+}
+
+@utility w-col-11 {
+  width: calc(
+    (11 * var(--grid-column-width)) + ((11 - 1) * var(--grid-gutter))
+  );
+}
+
+@utility w-col-12 {
+  width: calc(
+    (12 * var(--grid-column-width)) + ((12 - 1) * var(--grid-gutter))
+  );
+}
+
+@utility w-col-1-gap {
+  width: calc(
+    (1 * var(--grid-column-width)) + ((1 - 1) * var(--grid-gutter)) +
+      var(--grid-gutter)
+  );
+}
+
+@utility w-col-2-gap {
+  width: calc(
+    (2 * var(--grid-column-width)) + ((2 - 1) * var(--grid-gutter)) +
+      var(--grid-gutter)
+  );
+}
+
+@utility w-col-3-gap {
+  width: calc(
+    (3 * var(--grid-column-width)) + ((3 - 1) * var(--grid-gutter)) +
+      var(--grid-gutter)
+  );
+}
+
+@utility w-col-4-gap {
+  width: calc(
+    (4 * var(--grid-column-width)) + ((4 - 1) * var(--grid-gutter)) +
+      var(--grid-gutter)
+  );
+}
+
+@utility w-col-5-gap {
+  width: calc(
+    (5 * var(--grid-column-width)) + ((5 - 1) * var(--grid-gutter)) +
+      var(--grid-gutter)
+  );
+}
+
+@utility w-col-6-gap {
+  width: calc(
+    (6 * var(--grid-column-width)) + ((6 - 1) * var(--grid-gutter)) +
+      var(--grid-gutter)
+  );
+}
+
+@utility w-col-7-gap {
+  width: calc(
+    (7 * var(--grid-column-width)) + ((7 - 1) * var(--grid-gutter)) +
+      var(--grid-gutter)
+  );
+}
+
+@utility w-col-8-gap {
+  width: calc(
+    (8 * var(--grid-column-width)) + ((8 - 1) * var(--grid-gutter)) +
+      var(--grid-gutter)
+  );
+}
+
+@utility w-col-9-gap {
+  width: calc(
+    (9 * var(--grid-column-width)) + ((9 - 1) * var(--grid-gutter)) +
+      var(--grid-gutter)
+  );
+}
+
+@utility w-col-10-gap {
+  width: calc(
+    (10 * var(--grid-column-width)) + ((10 - 1) * var(--grid-gutter)) +
+      var(--grid-gutter)
+  );
+}
+
+@utility w-col-11-gap {
+  width: calc(
+    (11 * var(--grid-column-width)) + ((11 - 1) * var(--grid-gutter)) +
+      var(--grid-gutter)
+  );
+}
+
+@utility w-col-12-gap {
+  width: calc(
+    (12 * var(--grid-column-width)) + ((12 - 1) * var(--grid-gutter)) +
+      var(--grid-gutter)
+  );
+}
+
+@utility ml-col-1 {
+  margin-left: calc(
+    (1 * var(--grid-column-width)) + ((1 - 1) * var(--grid-gutter))
+  );
+}
+
+@utility ml-col-2 {
+  margin-left: calc(
+    (2 * var(--grid-column-width)) + ((2 - 1) * var(--grid-gutter))
+  );
+}
+
+@utility ml-col-3 {
+  margin-left: calc(
+    (3 * var(--grid-column-width)) + ((3 - 1) * var(--grid-gutter))
+  );
+}
+
+@utility ml-col-4 {
+  margin-left: calc(
+    (4 * var(--grid-column-width)) + ((4 - 1) * var(--grid-gutter))
+  );
+}
+
+@utility ml-col-5 {
+  margin-left: calc(
+    (5 * var(--grid-column-width)) + ((5 - 1) * var(--grid-gutter))
+  );
+}
+
+@utility ml-col-6 {
+  margin-left: calc(
+    (6 * var(--grid-column-width)) + ((6 - 1) * var(--grid-gutter))
+  );
+}
+
+@utility ml-col-7 {
+  margin-left: calc(
+    (7 * var(--grid-column-width)) + ((7 - 1) * var(--grid-gutter))
+  );
+}
+
+@utility ml-col-8 {
+  margin-left: calc(
+    (8 * var(--grid-column-width)) + ((8 - 1) * var(--grid-gutter))
+  );
+}
+
+@utility ml-col-9 {
+  margin-left: calc(
+    (9 * var(--grid-column-width)) + ((9 - 1) * var(--grid-gutter))
+  );
+}
+
+@utility ml-col-10 {
+  margin-left: calc(
+    (10 * var(--grid-column-width)) + ((10 - 1) * var(--grid-gutter))
+  );
+}
+
+@utility ml-col-11 {
+  margin-left: calc(
+    (11 * var(--grid-column-width)) + ((11 - 1) * var(--grid-gutter))
+  );
+}
+
+@utility ml-col-12 {
+  margin-left: calc(
+    (12 * var(--grid-column-width)) + ((12 - 1) * var(--grid-gutter))
+  );
+}
+
+@utility mr-col-1 {
+  margin-right: calc(
+    (1 * var(--grid-column-width)) + ((1 - 1) * var(--grid-gutter))
+  );
+}
+
+@utility mr-col-2 {
+  margin-right: calc(
+    (2 * var(--grid-column-width)) + ((2 - 1) * var(--grid-gutter))
+  );
+}
+
+@utility mr-col-3 {
+  margin-right: calc(
+    (3 * var(--grid-column-width)) + ((3 - 1) * var(--grid-gutter))
+  );
+}
+
+@utility mr-col-4 {
+  margin-right: calc(
+    (4 * var(--grid-column-width)) + ((4 - 1) * var(--grid-gutter))
+  );
+}
+
+@utility mr-col-5 {
+  margin-right: calc(
+    (5 * var(--grid-column-width)) + ((5 - 1) * var(--grid-gutter))
+  );
+}
+
+@utility mr-col-6 {
+  margin-right: calc(
+    (6 * var(--grid-column-width)) + ((6 - 1) * var(--grid-gutter))
+  );
+}
+
+@utility mr-col-7 {
+  margin-right: calc(
+    (7 * var(--grid-column-width)) + ((7 - 1) * var(--grid-gutter))
+  );
+}
+
+@utility mr-col-8 {
+  margin-right: calc(
+    (8 * var(--grid-column-width)) + ((8 - 1) * var(--grid-gutter))
+  );
+}
+
+@utility mr-col-9 {
+  margin-right: calc(
+    (9 * var(--grid-column-width)) + ((9 - 1) * var(--grid-gutter))
+  );
+}
+
+@utility mr-col-10 {
+  margin-right: calc(
+    (10 * var(--grid-column-width)) + ((10 - 1) * var(--grid-gutter))
+  );
+}
+
+@utility mr-col-11 {
+  margin-right: calc(
+    (11 * var(--grid-column-width)) + ((11 - 1) * var(--grid-gutter))
+  );
+}
+
+@utility mr-col-12 {
+  margin-right: calc(
+    (12 * var(--grid-column-width)) + ((12 - 1) * var(--grid-gutter))
+  );
+}
+
+@utility pl-col-1 {
+  padding-left: calc(
+    (1 * var(--grid-column-width)) + ((1 - 1) * var(--grid-gutter))
+  );
+}
+
+@utility pl-col-2 {
+  padding-left: calc(
+    (2 * var(--grid-column-width)) + ((2 - 1) * var(--grid-gutter))
+  );
+}
+
+@utility pl-col-3 {
+  padding-left: calc(
+    (3 * var(--grid-column-width)) + ((3 - 1) * var(--grid-gutter))
+  );
+}
+
+@utility pl-col-4 {
+  padding-left: calc(
+    (4 * var(--grid-column-width)) + ((4 - 1) * var(--grid-gutter))
+  );
+}
+
+@utility pl-col-5 {
+  padding-left: calc(
+    (5 * var(--grid-column-width)) + ((5 - 1) * var(--grid-gutter))
+  );
+}
+
+@utility pl-col-6 {
+  padding-left: calc(
+    (6 * var(--grid-column-width)) + ((6 - 1) * var(--grid-gutter))
+  );
+}
+
+@utility pl-col-7 {
+  padding-left: calc(
+    (7 * var(--grid-column-width)) + ((7 - 1) * var(--grid-gutter))
+  );
+}
+
+@utility pl-col-8 {
+  padding-left: calc(
+    (8 * var(--grid-column-width)) + ((8 - 1) * var(--grid-gutter))
+  );
+}
+
+@utility pl-col-9 {
+  padding-left: calc(
+    (9 * var(--grid-column-width)) + ((9 - 1) * var(--grid-gutter))
+  );
+}
+
+@utility pl-col-10 {
+  padding-left: calc(
+    (10 * var(--grid-column-width)) + ((10 - 1) * var(--grid-gutter))
+  );
+}
+
+@utility pl-col-11 {
+  padding-left: calc(
+    (11 * var(--grid-column-width)) + ((11 - 1) * var(--grid-gutter))
+  );
+}
+
+@utility pl-col-12 {
+  padding-left: calc(
+    (12 * var(--grid-column-width)) + ((12 - 1) * var(--grid-gutter))
+  );
+}
+
+@utility pr-col-1 {
+  padding-right: calc(
+    (1 * var(--grid-column-width)) + ((1 - 1) * var(--grid-gutter))
+  );
+}
+
+@utility pr-col-2 {
+  padding-right: calc(
+    (2 * var(--grid-column-width)) + ((2 - 1) * var(--grid-gutter))
+  );
+}
+
+@utility pr-col-3 {
+  padding-right: calc(
+    (3 * var(--grid-column-width)) + ((3 - 1) * var(--grid-gutter))
+  );
+}
+
+@utility pr-col-4 {
+  padding-right: calc(
+    (4 * var(--grid-column-width)) + ((4 - 1) * var(--grid-gutter))
+  );
+}
+
+@utility pr-col-5 {
+  padding-right: calc(
+    (5 * var(--grid-column-width)) + ((5 - 1) * var(--grid-gutter))
+  );
+}
+
+@utility pr-col-6 {
+  padding-right: calc(
+    (6 * var(--grid-column-width)) + ((6 - 1) * var(--grid-gutter))
+  );
+}
+
+@utility pr-col-7 {
+  padding-right: calc(
+    (7 * var(--grid-column-width)) + ((7 - 1) * var(--grid-gutter))
+  );
+}
+
+@utility pr-col-8 {
+  padding-right: calc(
+    (8 * var(--grid-column-width)) + ((8 - 1) * var(--grid-gutter))
+  );
+}
+
+@utility pr-col-9 {
+  padding-right: calc(
+    (9 * var(--grid-column-width)) + ((9 - 1) * var(--grid-gutter))
+  );
+}
+
+@utility pr-col-10 {
+  padding-right: calc(
+    (10 * var(--grid-column-width)) + ((10 - 1) * var(--grid-gutter))
+  );
+}
+
+@utility pr-col-11 {
+  padding-right: calc(
+    (11 * var(--grid-column-width)) + ((11 - 1) * var(--grid-gutter))
+  );
+}
+
+@utility pr-col-12 {
+  padding-right: calc(
+    (12 * var(--grid-column-width)) + ((12 - 1) * var(--grid-gutter))
+  );
+}
+
+@utility ml-col-1-gap {
+  margin-left: calc(
+    (1 * var(--grid-column-width)) + ((1 - 1) * var(--grid-gutter)) +
+      var(--grid-gutter)
+  );
+}
+
+@utility ml-col-2-gap {
+  margin-left: calc(
+    (2 * var(--grid-column-width)) + ((2 - 1) * var(--grid-gutter)) +
+      var(--grid-gutter)
+  );
+}
+
+@utility ml-col-3-gap {
+  margin-left: calc(
+    (3 * var(--grid-column-width)) + ((3 - 1) * var(--grid-gutter)) +
+      var(--grid-gutter)
+  );
+}
+
+@utility ml-col-4-gap {
+  margin-left: calc(
+    (4 * var(--grid-column-width)) + ((4 - 1) * var(--grid-gutter)) +
+      var(--grid-gutter)
+  );
+}
+
+@utility ml-col-5-gap {
+  margin-left: calc(
+    (5 * var(--grid-column-width)) + ((5 - 1) * var(--grid-gutter)) +
+      var(--grid-gutter)
+  );
+}
+
+@utility ml-col-6-gap {
+  margin-left: calc(
+    (6 * var(--grid-column-width)) + ((6 - 1) * var(--grid-gutter)) +
+      var(--grid-gutter)
+  );
+}
+
+@utility ml-col-7-gap {
+  margin-left: calc(
+    (7 * var(--grid-column-width)) + ((7 - 1) * var(--grid-gutter)) +
+      var(--grid-gutter)
+  );
+}
+
+@utility ml-col-8-gap {
+  margin-left: calc(
+    (8 * var(--grid-column-width)) + ((8 - 1) * var(--grid-gutter)) +
+      var(--grid-gutter)
+  );
+}
+
+@utility ml-col-9-gap {
+  margin-left: calc(
+    (9 * var(--grid-column-width)) + ((9 - 1) * var(--grid-gutter)) +
+      var(--grid-gutter)
+  );
+}
+
+@utility ml-col-10-gap {
+  margin-left: calc(
+    (10 * var(--grid-column-width)) + ((10 - 1) * var(--grid-gutter)) +
+      var(--grid-gutter)
+  );
+}
+
+@utility ml-col-11-gap {
+  margin-left: calc(
+    (11 * var(--grid-column-width)) + ((11 - 1) * var(--grid-gutter)) +
+      var(--grid-gutter)
+  );
+}
+
+@utility ml-col-12-gap {
+  margin-left: calc(
+    (12 * var(--grid-column-width)) + ((12 - 1) * var(--grid-gutter)) +
+      var(--grid-gutter)
+  );
+}
+
+@utility mr-col-1-gap {
+  margin-right: calc(
+    (1 * var(--grid-column-width)) + ((1 - 1) * var(--grid-gutter)) +
+      var(--grid-gutter)
+  );
+}
+
+@utility mr-col-2-gap {
+  margin-right: calc(
+    (2 * var(--grid-column-width)) + ((2 - 1) * var(--grid-gutter)) +
+      var(--grid-gutter)
+  );
+}
+
+@utility mr-col-3-gap {
+  margin-right: calc(
+    (3 * var(--grid-column-width)) + ((3 - 1) * var(--grid-gutter)) +
+      var(--grid-gutter)
+  );
+}
+
+@utility mr-col-4-gap {
+  margin-right: calc(
+    (4 * var(--grid-column-width)) + ((4 - 1) * var(--grid-gutter)) +
+      var(--grid-gutter)
+  );
+}
+
+@utility mr-col-5-gap {
+  margin-right: calc(
+    (5 * var(--grid-column-width)) + ((5 - 1) * var(--grid-gutter)) +
+      var(--grid-gutter)
+  );
+}
+
+@utility mr-col-6-gap {
+  margin-right: calc(
+    (6 * var(--grid-column-width)) + ((6 - 1) * var(--grid-gutter)) +
+      var(--grid-gutter)
+  );
+}
+
+@utility mr-col-7-gap {
+  margin-right: calc(
+    (7 * var(--grid-column-width)) + ((7 - 1) * var(--grid-gutter)) +
+      var(--grid-gutter)
+  );
+}
+
+@utility mr-col-8-gap {
+  margin-right: calc(
+    (8 * var(--grid-column-width)) + ((8 - 1) * var(--grid-gutter)) +
+      var(--grid-gutter)
+  );
+}
+
+@utility mr-col-9-gap {
+  margin-right: calc(
+    (9 * var(--grid-column-width)) + ((9 - 1) * var(--grid-gutter)) +
+      var(--grid-gutter)
+  );
+}
+
+@utility mr-col-10-gap {
+  margin-right: calc(
+    (10 * var(--grid-column-width)) + ((10 - 1) * var(--grid-gutter)) +
+      var(--grid-gutter)
+  );
+}
+
+@utility mr-col-11-gap {
+  margin-right: calc(
+    (11 * var(--grid-column-width)) + ((11 - 1) * var(--grid-gutter)) +
+      var(--grid-gutter)
+  );
+}
+
+@utility mr-col-12-gap {
+  margin-right: calc(
+    (12 * var(--grid-column-width)) + ((12 - 1) * var(--grid-gutter)) +
+      var(--grid-gutter)
+  );
+}
+
+@utility pl-col-1-gap {
+  padding-left: calc(
+    (1 * var(--grid-column-width)) + ((1 - 1) * var(--grid-gutter)) +
+      var(--grid-gutter)
+  );
+}
+
+@utility pl-col-2-gap {
+  padding-left: calc(
+    (2 * var(--grid-column-width)) + ((2 - 1) * var(--grid-gutter)) +
+      var(--grid-gutter)
+  );
+}
+
+@utility pl-col-3-gap {
+  padding-left: calc(
+    (3 * var(--grid-column-width)) + ((3 - 1) * var(--grid-gutter)) +
+      var(--grid-gutter)
+  );
+}
+
+@utility pl-col-4-gap {
+  padding-left: calc(
+    (4 * var(--grid-column-width)) + ((4 - 1) * var(--grid-gutter)) +
+      var(--grid-gutter)
+  );
+}
+
+@utility pl-col-5-gap {
+  padding-left: calc(
+    (5 * var(--grid-column-width)) + ((5 - 1) * var(--grid-gutter)) +
+      var(--grid-gutter)
+  );
+}
+
+@utility pl-col-6-gap {
+  padding-left: calc(
+    (6 * var(--grid-column-width)) + ((6 - 1) * var(--grid-gutter)) +
+      var(--grid-gutter)
+  );
+}
+
+@utility pl-col-7-gap {
+  padding-left: calc(
+    (7 * var(--grid-column-width)) + ((7 - 1) * var(--grid-gutter)) +
+      var(--grid-gutter)
+  );
+}
+
+@utility pl-col-8-gap {
+  padding-left: calc(
+    (8 * var(--grid-column-width)) + ((8 - 1) * var(--grid-gutter)) +
+      var(--grid-gutter)
+  );
+}
+
+@utility pl-col-9-gap {
+  padding-left: calc(
+    (9 * var(--grid-column-width)) + ((9 - 1) * var(--grid-gutter)) +
+      var(--grid-gutter)
+  );
+}
+
+@utility pl-col-10-gap {
+  padding-left: calc(
+    (10 * var(--grid-column-width)) + ((10 - 1) * var(--grid-gutter)) +
+      var(--grid-gutter)
+  );
+}
+
+@utility pl-col-11-gap {
+  padding-left: calc(
+    (11 * var(--grid-column-width)) + ((11 - 1) * var(--grid-gutter)) +
+      var(--grid-gutter)
+  );
+}
+
+@utility pl-col-12-gap {
+  padding-left: calc(
+    (12 * var(--grid-column-width)) + ((12 - 1) * var(--grid-gutter)) +
+      var(--grid-gutter)
+  );
+}
+
+@utility pr-col-1-gap {
+  padding-right: calc(
+    (1 * var(--grid-column-width)) + ((1 - 1) * var(--grid-gutter)) +
+      var(--grid-gutter)
+  );
+}
+
+@utility pr-col-2-gap {
+  padding-right: calc(
+    (2 * var(--grid-column-width)) + ((2 - 1) * var(--grid-gutter)) +
+      var(--grid-gutter)
+  );
+}
+
+@utility pr-col-3-gap {
+  padding-right: calc(
+    (3 * var(--grid-column-width)) + ((3 - 1) * var(--grid-gutter)) +
+      var(--grid-gutter)
+  );
+}
+
+@utility pr-col-4-gap {
+  padding-right: calc(
+    (4 * var(--grid-column-width)) + ((4 - 1) * var(--grid-gutter)) +
+      var(--grid-gutter)
+  );
+}
+
+@utility pr-col-5-gap {
+  padding-right: calc(
+    (5 * var(--grid-column-width)) + ((5 - 1) * var(--grid-gutter)) +
+      var(--grid-gutter)
+  );
+}
+
+@utility pr-col-6-gap {
+  padding-right: calc(
+    (6 * var(--grid-column-width)) + ((6 - 1) * var(--grid-gutter)) +
+      var(--grid-gutter)
+  );
+}
+
+@utility pr-col-7-gap {
+  padding-right: calc(
+    (7 * var(--grid-column-width)) + ((7 - 1) * var(--grid-gutter)) +
+      var(--grid-gutter)
+  );
+}
+
+@utility pr-col-8-gap {
+  padding-right: calc(
+    (8 * var(--grid-column-width)) + ((8 - 1) * var(--grid-gutter)) +
+      var(--grid-gutter)
+  );
+}
+
+@utility pr-col-9-gap {
+  padding-right: calc(
+    (9 * var(--grid-column-width)) + ((9 - 1) * var(--grid-gutter)) +
+      var(--grid-gutter)
+  );
+}
+
+@utility pr-col-10-gap {
+  padding-right: calc(
+    (10 * var(--grid-column-width)) + ((10 - 1) * var(--grid-gutter)) +
+      var(--grid-gutter)
+  );
+}
+
+@utility pr-col-11-gap {
+  padding-right: calc(
+    (11 * var(--grid-column-width)) + ((11 - 1) * var(--grid-gutter)) +
+      var(--grid-gutter)
+  );
+}
+
+@utility pr-col-12-gap {
+  padding-right: calc(
+    (12 * var(--grid-column-width)) + ((12 - 1) * var(--grid-gutter)) +
+      var(--grid-gutter)
+  );
+}

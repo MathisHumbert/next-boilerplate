@@ -1,0 +1,45 @@
+{
+  "name": "next-boilerplate",
+  "type": "module",
+  "author": "Mathis Humbert",
+  "license": "MIT",
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "@gsap/react": "^2.1.2",
+    "@sanity/image-url": "^1.2.0",
+    "clsx": "^2.1.1",
+    "fontfaceobserver": "^2.3.0",
+    "gsap": "^3.13.0",
+    "imagesloaded": "^5.0.0",
+    "lenis": "^1.3.15",
+    "next": "15.3.3",
+    "next-sanity": "^10.1.4",
+    "next-transition-router": "^0.2.11",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "smooothy": "^0.0.26",
+    "stats.js": "^0.17.0",
+    "tempus": "1.0.0-dev.12"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.3.1",
+    "@tailwindcss/postcss": "^4.1.17",
+    "@types/fontfaceobserver": "^2.1.3",
+    "@types/imagesloaded": "^4.1.7",
+    "@types/node": "^20.19.25",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "@types/stats.js": "^0.17.4",
+    "eslint": "^9.39.1",
+    "eslint-config-next": "15.3.3",
+    "sass": "^1.94.2",
+    "tailwindcss": "^4.1.17",
+    "typescript": "^5.9.3"
+  }
+}

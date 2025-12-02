@@ -1,0 +1,6 @@
+@import "./tailwind/colors.css";
+@import "./tailwind/typography.css";
+@import "./tailwind/easing.css";
+@import "./tailwind/z-index.css";
+@import "./tailwind/grid.css";
+@import "./tailwind/helpers.css";

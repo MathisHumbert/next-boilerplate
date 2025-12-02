@@ -1,0 +1,23 @@
+@utility ease-in-out {
+  transition-timing-function: var(--ease-in-out);
+}
+
+@utility ease-expo-in-out {
+  transition-timing-function: var(--expo-in-out);
+}
+
+@utility ease-out {
+  transition-timing-function: var(--ease-out);
+}
+
+@utility ease-expo-out {
+  transition-timing-function: var(--expo-out);
+}
+
+@utility duration-slow {
+  transition-duration: 1.2s;
+}
+
+@utility duration-fast {
+  transition-duration: 0.6s;
+}
