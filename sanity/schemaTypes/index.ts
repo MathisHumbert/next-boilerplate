@@ -6,6 +6,7 @@ import settings from "./singleton/settings";
 // repeatables
 
 // components
+import accordion from "./components/accordion";
 import headingText from "./components/heading-text";
 import hero from "./components/hero";
 import slider from "./components/slider";
@@ -24,6 +25,7 @@ export const schemaTypes = [
   // repeatables
 
   // components
+  accordion,
   headingText,
   hero,
   slider,

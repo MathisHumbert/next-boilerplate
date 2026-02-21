@@ -56,6 +56,9 @@ export default {
         {
           type: "slider",
         },
+        {
+          type: "accordion",
+        },
       ],
     },
     {
