@@ -1,3 +1,5 @@
+@import "locomotive-scroll/dist/locomotive-scroll.css";
+
 *,
 *::after,
 *::before {
@@ -77,6 +79,21 @@ a {
   text-decoration: none;
 }
 
+a:focus-visible,
+button:focus-visible {
+  outline: 1px solid currentColor;
+  outline-offset: 0.3em;
+}
+
+summary:focus-visible {
+  outline: none;
+}
+
+summary:focus-visible div {
+  outline: 1px solid currentColor;
+  outline-offset: 0.3em;
+}
+
 button {
   background: none;
   border: none;
@@ -93,4 +110,52 @@ canvas {
   height: 100%;
   pointer-events: none;
   z-index: var(--z-canvas);
+}
+
+[data-animation="appear"] {
+  opacity: 0;
+  transition: opacity 1s var(--ease-in-out);
+  transition-delay: var(--delay, 0s);
+}
+
+[data-animation="appear"].is-inview {
+  opacity: 1;
+}
+
+[data-animation="slide-up"] {
+  transform: translateY(var(--y, 20%));
+  opacity: var(--opacity-from, 1);
+  transition:
+    transform 0.6s var(--ease-out),
+    opacity 0.6s var(--ease-out);
+  transition-delay: var(--delay, 0s);
+  will-change: transform;
+}
+
+[data-animation="slide-up"].is-inview {
+  transform: translateY(0%);
+  opacity: 1;
+}
+
+[data-animation="line"] {
+  transform: scale(0);
+  transform-origin: var(--origin, left);
+  transition: transform 1.25s var(--ease-in-out);
+  transition-delay: var(--delay, 0s);
+  will-change: transform;
+}
+
+[data-animation="line"].is-inview {
+  transform: scale(1);
+}
+
+[data-animation="text"] div div {
+  transform: translateY(125%) rotate(var(--rotate, 0deg));
+  transition: transform 1.5s var(--ease-expo-out);
+  transition-delay: calc(var(--delay, 0s) + (var(--index, 0) * 0.1s));
+  will-change: transform;
+}
+
+[data-animation="text"].is-inview div div {
+  transform: translateY(0%) rotate(0deg);
 }

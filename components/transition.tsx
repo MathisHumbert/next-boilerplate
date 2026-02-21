@@ -5,12 +5,15 @@ import gsap from "gsap";
 import imagesLoaded from "imagesloaded";
 import { TransitionRouter } from "next-transition-router";
 
-import { delay, events } from "@/libs/utils";
-import { easeOut } from "@/libs/easing";
+import { delay } from "@/libs/utils";
+import { $isPageVisible } from "@/store/global";
 
 interface TransitionProps {
   children: React.ReactNode;
 }
+
+const allowTransitions = process.env.NODE_ENV !== "development";
+// const allowTransitions = true;
 
 export function Transition({ children }: TransitionProps) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -20,7 +23,8 @@ export function Transition({ children }: TransitionProps) {
       await delay(0.1);
 
       if (containerRef.current) {
-        imagesLoaded(containerRef.current, { background: true }, () => res());
+        const images = document.querySelectorAll('img[loading="eager"]');
+        imagesLoaded(images, () => res());
       } else {
         res();
       }
@@ -28,54 +32,60 @@ export function Transition({ children }: TransitionProps) {
   };
 
   return (
-    <TransitionRouter
-      auto={true}
-      leave={(next, from, to) => {
-        events.emit("hidePage", from);
-        document.documentElement.classList.remove("visible");
+    <div id="scroll-wrapper">
+      <div id="scroll-content">
+        <TransitionRouter
+          auto={true}
+          leave={(next, from, to) => {
+            $isPageVisible.set(false);
 
-        const tl = gsap.timeline({
-          onComplete: () => {
+            document.documentElement.classList.remove("visible");
+
+            const tl = gsap.timeline({
+              onComplete: () => {
+                next();
+              },
+            });
+
+            if (allowTransitions) {
+              tl.to(containerRef.current, {
+                opacity: 0,
+                duration: 0.5,
+                ease: "sine.out",
+              });
+            }
+
+            return () => {
+              tl.kill();
+
+              $isPageVisible.set(true);
+              document.documentElement.classList.add("visible");
+            };
+          }}
+          enter={async (next) => {
             next();
-          },
-        });
 
-        if (process.env.NODE_ENV !== "development") {
-          tl.to(containerRef.current, {
-            opacity: 0,
-            duration: 0.5,
-            ease: easeOut,
-          });
-        }
+            await loadPage();
 
-        return () => {
-          tl.kill();
+            const tl = gsap.timeline();
 
-          events.emit("showPage", to);
-          document.documentElement.classList.add("visible");
-        };
-      }}
-      enter={async (next) => {
-        next();
+            if (allowTransitions) {
+              tl.to(containerRef.current, {
+                opacity: 1,
+                duration: 0.5,
+                delay: 0.2,
+                ease: "sine.out",
+              });
+            }
 
-        await loadPage();
-
-        const tl = gsap.timeline();
-
-        if (process.env.NODE_ENV !== "development") {
-          tl.to(containerRef.current, {
-            opacity: 1,
-            duration: 0.5,
-            ease: easeOut,
-          });
-        }
-
-        return () => tl.kill();
-      }}
-    >
-      <main className="content" ref={containerRef}>
-        {children}
-      </main>
-    </TransitionRouter>
+            return () => tl.kill();
+          }}
+        >
+          <main className="content" ref={containerRef}>
+            {children}
+          </main>
+        </TransitionRouter>
+      </div>
+    </div>
   );
 }

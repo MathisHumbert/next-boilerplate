@@ -1,7 +1,7 @@
 import { Link as TransitionLink } from "next-transition-router";
-
 import type { PageSettings } from "@/sanity/sanity.types";
-import { LineReveal } from "../(animations)/line-reveal";
+
+import { TextReveal } from "../(animations)/text-reveal";
 
 interface FooterProps {
   nextPage?: PageSettings["footerPage"];
@@ -20,17 +20,25 @@ export function Footer({ nextPage }: FooterProps) {
 
   return (
     <footer className="relative flex gap-grid py-48 px-grid">
-      <LineReveal>
-        <span className="absolute top-0 left-grid w-[calc(100%-var(--grid-margin)*2)] h-px bg-current" />
-      </LineReveal>
-      <p className="text-xs uppercase w-col-1">Next Page</p>
-      <TransitionLink
-        href={getHref()}
-        scroll={false}
-        className="text-xs uppercase ml-col-2-gap"
-      >
-        {getLabel()}
-      </TransitionLink>
+      <span
+        data-scroll
+        data-scroll-class="is-inview"
+        data-animation="line"
+        className="absolute top-0 left-grid w-[calc(100%-var(--grid-margin)*2)] h-px bg-current"
+      />
+      <TextReveal>
+        <p className="text-xs uppercase w-col-1">Next Page</p>
+      </TextReveal>
+
+      <TextReveal>
+        <TransitionLink
+          href={getHref()}
+          scroll={false}
+          className="text-xs uppercase ml-col-2-gap"
+        >
+          {getLabel()}
+        </TransitionLink>
+      </TextReveal>
     </footer>
   );
 }

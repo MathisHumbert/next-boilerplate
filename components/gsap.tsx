@@ -13,9 +13,6 @@ if (typeof window !== "undefined") {
   gsap.ticker.remove(gsap.updateRoot);
 
   ScrollTrigger.clearScrollMemory("manual");
-  ScrollTrigger.defaults({
-    // markers: process.env.NODE_ENV === "development",
-  });
 }
 
 export function GSAP() {

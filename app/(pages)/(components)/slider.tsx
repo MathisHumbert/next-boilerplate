@@ -1,6 +1,6 @@
 "use client";
 
-import { useSmooothy } from "@/hooks/useSmooothy";
+import { useSmooothy } from "@/hooks/use-smooothy";
 import { SanityImage } from "@/components/sanity-image";
 import type { Slider as SliderType } from "@/sanity/sanity.types";
 

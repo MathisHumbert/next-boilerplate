@@ -1,14 +1,16 @@
 import { Hero } from "@/app/(pages)/(components)/hero";
 import { Slider } from "@/app/(pages)/(components)/slider";
 import { HeadingText } from "@/app/(pages)/(components)/heading-text";
+import { Accordion } from "@/app/(pages)/(components)/accordion";
 
 import type {
   Hero as HeroType,
   HeadingText as HeadingTextType,
   Slider as SliderType,
+  Accordion as AccordionType,
 } from "@/sanity/sanity.types";
 
-type ContentComponent = (HeroType | HeadingTextType | SliderType) & {
+type ContentComponent = (HeroType | HeadingTextType | SliderType | AccordionType) & {
   _key: string;
 };
 
@@ -29,6 +31,8 @@ export function Content({ data, index }: ContentProps) {
       return <HeadingText key={data._key || index} {...data} />;
     case "slider":
       return <Slider key={data._key || index} {...data} />;
+    case "accordion":
+      return <Accordion key={data._key || index} {...data} />;
     default:
       return null;
   }

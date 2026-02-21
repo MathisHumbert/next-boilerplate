@@ -1,7 +1,6 @@
 import React from "react";
 
 import type { Hero as HeroType } from "@/sanity/sanity.types";
-import { TextReveal } from "../(animations)/text-reveal";
 
 export function Hero(data: HeroType) {
   if (!data) return null;
@@ -23,12 +22,8 @@ export function Hero(data: HeroType) {
       )}
       <header>
         <h1 className="text-heading-l font-bold uppercase flex flex-col">
-          <TextReveal delay={0.1} rotate={15}>
-            <span>{titleLeft}</span>
-          </TextReveal>
-          <TextReveal delay={0.2} rotate={15}>
-            <span className="ml-col-6-gap">{titleRight}</span>
-          </TextReveal>
+          <span>{titleLeft}</span>
+          <span className="ml-col-6-gap">{titleRight}</span>
         </h1>
       </header>
     </section>
