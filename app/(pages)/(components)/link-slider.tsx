@@ -1,15 +1,17 @@
 "use client";
 
+import { Link } from "next-transition-router";
 import { useState } from "react";
 
 import { useSmooothy } from "@/hooks/use-smooothy";
 import { SanityImage } from "@/components/sanity-image";
 import type { Slider as SliderType } from "@/sanity/sanity.types";
 
-export function Slider(data: SliderType) {
+export function LinkSlider(data: SliderType) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const { ref, slider } = useSmooothy({
     infinite: false,
+    link: true,
     keyboard: true,
     lerpFactor: 0.2,
     setOffset: ({ wrapperWidth }) => {
@@ -48,24 +50,23 @@ export function Slider(data: SliderType) {
       <div className="flex overflow-hidden" ref={ref}>
         {images &&
           images.map((item, index) => (
-            <div
-              className="relative w-col-3-gap shrink-0 pr-8 flex flex-col gap-[1.2rem]"
-              key={index}
-            >
-              <figure className="relative w-full aspect-square">
-                {item.image?.asset && (
-                  <SanityImage
-                    image={item.image}
-                    alt={item.alt || ""}
-                    sizes="33vw"
-                  />
-                )}
-              </figure>
-              <p className="text-xs uppercase">Lorem.</p>
-              <p className="text-s">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa
-                iure voluptatibus iusto? Vitae, asperiores.
-              </p>
+            <div className="relative w-col-3-gap shrink-0 ] pr-8" key={index}>
+              <Link href="/about" className="flex flex-col gap-[1.2rem]">
+                <figure className="relative w-full aspect-square">
+                  {item.image?.asset && (
+                    <SanityImage
+                      image={item.image}
+                      alt={item.alt || ""}
+                      sizes="33vw"
+                    />
+                  )}
+                </figure>
+                <p className="text-xs uppercase">Lorem.</p>
+                <p className="text-s">
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
+                  Culpa iure voluptatibus iusto? Vitae, asperiores.
+                </p>
+              </Link>
             </div>
           ))}
       </div>

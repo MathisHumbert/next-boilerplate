@@ -2,7 +2,6 @@
 
 import gsap from "gsap";
 import { SplitText, ScrollTrigger } from "gsap/all";
-import { useTempus } from "tempus/react";
 
 if (typeof window !== "undefined") {
   gsap.registerPlugin(SplitText, ScrollTrigger);
@@ -10,15 +9,10 @@ if (typeof window !== "undefined") {
   gsap.defaults({ ease: "none" });
 
   gsap.ticker.lagSmoothing(0);
-  gsap.ticker.remove(gsap.updateRoot);
 
   ScrollTrigger.clearScrollMemory("manual");
 }
 
 export function GSAP() {
-  useTempus((time) => {
-    gsap.updateRoot(time / 1000);
-  });
-
   return null;
 }

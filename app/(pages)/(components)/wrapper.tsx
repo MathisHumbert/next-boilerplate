@@ -3,6 +3,7 @@
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, type ReactNode } from "react";
 import cn from "clsx";
+import gsap from "gsap";
 import { ScrollTrigger } from "gsap/all";
 
 import { Footer } from "@/app/(pages)/(components)/footer";
@@ -46,6 +47,12 @@ export function Wrapper({
 
       locomotiveScrollRef.current = new LocomotiveScroll({
         autoStart: false,
+        initCustomTicker: (render) => {
+          gsap.ticker.add(render);
+        },
+        destroyCustomTicker: (render) => {
+          gsap.ticker.remove(render);
+        },
         lenisOptions: {
           wrapper,
           content,

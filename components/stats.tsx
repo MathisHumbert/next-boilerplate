@@ -2,7 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import _Stats from "stats.js";
-import { useTempus } from "tempus/react";
+import gsap from "gsap";
 
 export function Stats() {
   const statsRef = useRef<_Stats | null>(null);
@@ -13,33 +13,19 @@ export function Stats() {
     document.body.appendChild(stats.dom);
     statsRef.current = stats;
 
+    const beginTicker = () => { stats.begin(); };
+    const endTicker = () => { stats.end(); };
+
+    gsap.ticker.add(beginTicker, false, true);
+    gsap.ticker.add(endTicker);
+
     return () => {
+      gsap.ticker.remove(beginTicker);
+      gsap.ticker.remove(endTicker);
       stats.dom.remove();
       statsRef.current = null;
     };
   }, []);
-
-  useTempus(
-    () => {
-      if (statsRef.current) {
-        statsRef.current.begin();
-      }
-    },
-    {
-      priority: Number.NEGATIVE_INFINITY,
-    }
-  );
-
-  useTempus(
-    () => {
-      if (statsRef.current) {
-        statsRef.current.end();
-      }
-    },
-    {
-      priority: Number.POSITIVE_INFINITY,
-    }
-  );
 
   return null;
 }

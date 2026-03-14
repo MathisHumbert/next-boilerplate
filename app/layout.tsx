@@ -1,5 +1,3 @@
-import { ReactTempus } from "tempus/react";
-
 import { GSAP } from "@/components/gsap";
 import { Grid } from "@/components/grid";
 import { Stats } from "@/components/stats";
@@ -24,7 +22,6 @@ export default async function RootLayout({
         <Menu />
         <Navigation />
         <Transition>{children}</Transition>
-        <ReactTempus patch />
         <Grid />
         <Stats />
       </body>

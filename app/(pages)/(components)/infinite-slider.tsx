@@ -6,15 +6,11 @@ import { useSmooothy } from "@/hooks/use-smooothy";
 import { SanityImage } from "@/components/sanity-image";
 import type { Slider as SliderType } from "@/sanity/sanity.types";
 
-export function Slider(data: SliderType) {
+export function InfiteSlider(data: SliderType) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const { ref, slider } = useSmooothy({
-    infinite: false,
     keyboard: true,
     lerpFactor: 0.2,
-    setOffset: ({ wrapperWidth }) => {
-      return wrapperWidth;
-    },
     onSlideChange: (current, prev) => {
       setCurrentSlide(current);
     },
@@ -31,15 +27,14 @@ export function Slider(data: SliderType) {
         <div className="flex gap-4">
           <button
             onClick={() => slider?.goToPrev()}
-            className="text-xs uppercase disabled:opacity-30"
+            className="text-xs uppercase"
             disabled={currentSlide === 0}
           >
             Prev
           </button>
           <button
             onClick={() => slider?.goToNext()}
-            className="text-xs uppercase disabled:opacity-30"
-            disabled={currentSlide === images?.length! - 4}
+            className="text-xs uppercase"
           >
             Next
           </button>
@@ -47,7 +42,7 @@ export function Slider(data: SliderType) {
       </div>
       <div className="flex overflow-hidden" ref={ref}>
         {images &&
-          images.map((item, index) => (
+          [...images, ...images].map((item, index) => (
             <div
               className="relative w-col-3-gap shrink-0 pr-8 flex flex-col gap-[1.2rem]"
               key={index}

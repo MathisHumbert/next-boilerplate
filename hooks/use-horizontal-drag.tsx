@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef } from "react";
-import Tempus from "tempus";
+import gsap from "gsap";
 
 import { clamp, lerp } from "@/libs/utils";
 import { $isMobile, $isPageVisible } from "@/store/global";
@@ -10,6 +10,10 @@ interface UseHorizontalDragProps {
   contentRef: React.RefObject<HTMLElement | null>;
   enabled?: boolean;
   speed?: number;
+  keyboard?: boolean;
+  wheelScroll?: boolean;
+  wheelSpeed?: number;
+  onProgress?: (progress: number, index: number) => void;
 }
 
 export function useHorizontalDrag({
@@ -17,6 +21,10 @@ export function useHorizontalDrag({
   contentRef,
   enabled = true,
   speed = 1.5,
+  keyboard = true,
+  wheelScroll = false,
+  wheelSpeed = 1,
+  onProgress,
 }: UseHorizontalDragProps) {
   const scroll = useRef({
     current: 0,
@@ -24,10 +32,13 @@ export function useHorizontalDrag({
     position: 0,
     start: 0,
     limit: 0,
+    progress: 0,
+    index: 0,
   });
   const isDragging = useRef(false);
   const hasMoved = useRef(false);
-  const startElement = useRef<HTMLElement | null>(null);
+  const onProgressRef = useRef(onProgress);
+  onProgressRef.current = onProgress;
   const isMobile = useStore($isMobile);
   const isPageVisible = useStore($isPageVisible);
 
@@ -59,6 +70,32 @@ export function useHorizontalDrag({
     [contentRef, wrapperRef],
   );
 
+  const scrollToNext = useCallback(() => {
+    const content = contentRef.current;
+
+    if (!content) return;
+
+    const items = [...content.children] as HTMLElement[];
+    const next = items.find(
+      (item) => item.offsetLeft > scroll.current.current + 1,
+    );
+
+    if (next) scroll.current.target = next.offsetLeft;
+  }, [contentRef]);
+
+  const scrollToPrev = useCallback(() => {
+    const content = contentRef.current;
+
+    if (!content) return;
+
+    const items = [...content.children] as HTMLElement[];
+    const prev = [...items]
+      .reverse()
+      .find((item) => item.offsetLeft < scroll.current.current - 1);
+
+    if (prev) scroll.current.target = prev.offsetLeft;
+  }, [contentRef]);
+
   useEffect(() => {
     if (!enabled || !isPageVisible) return;
 
@@ -67,18 +104,55 @@ export function useHorizontalDrag({
 
     if (!content || !wrapper) return;
 
-    const handleTouchStart = (e: MouseEvent | TouchEvent) => {
-      const target = e.target as HTMLElement;
+    const linkCleanups: (() => void)[] = [];
 
-      if (!isMobile) {
-        if (target.closest("a")) {
-          e.preventDefault();
+    [...content.querySelectorAll<HTMLAnchorElement>("a")].forEach((item) => {
+      let startX = 0;
+      let startY = 0;
+      let startTime = 0;
+      let dragging = false;
+
+      item.style.pointerEvents = "none";
+
+      const parent = item.parentElement!;
+
+      const onDown = (e: MouseEvent) => {
+        startX = e.clientX;
+        startY = e.clientY;
+        startTime = Date.now();
+        dragging = false;
+      };
+
+      const onMove = (e: MouseEvent) => {
+        if (
+          Math.abs(e.clientX - startX) > 5 ||
+          Math.abs(e.clientY - startY) > 5
+        ) {
+          dragging = true;
         }
-      }
+      };
 
+      const onUp = () => {
+        if (!dragging && Date.now() - startTime < 200) item.click();
+        startTime = 0;
+        dragging = false;
+      };
+
+      parent.addEventListener("mousedown", onDown);
+      parent.addEventListener("mousemove", onMove);
+      parent.addEventListener("mouseup", onUp);
+
+      linkCleanups.push(() => {
+        parent.removeEventListener("mousedown", onDown);
+        parent.removeEventListener("mousemove", onMove);
+        parent.removeEventListener("mouseup", onUp);
+        item.style.pointerEvents = "";
+      });
+    });
+
+    const handleTouchStart = (e: MouseEvent | TouchEvent) => {
       isDragging.current = true;
       hasMoved.current = false;
-      startElement.current = target;
       scroll.current.position = scroll.current.current;
 
       if (scroll.current.limit > 0) {
@@ -106,15 +180,6 @@ export function useHorizontalDrag({
       scroll.current.target = scroll.current.position + distance;
     };
 
-    const handleDragStart = (e: DragEvent) => {
-      if (!isMobile) {
-        const target = e.target as HTMLElement;
-        if (target.closest("a")) {
-          e.preventDefault();
-        }
-      }
-    };
-
     const handleTouchEnd = (e: MouseEvent | TouchEvent) => {
       if (!isMobile && hasMoved.current) {
         e.preventDefault();
@@ -131,9 +196,7 @@ export function useHorizontalDrag({
     const handleClick = (e: MouseEvent) => {
       if (!isMobile && hasMoved.current) {
         const target = e.target as HTMLElement;
-        const link = target.closest("a");
-        const button = target.closest("button");
-        if (link || button) {
+        if (target.closest("button")) {
           e.preventDefault();
           e.stopPropagation();
           e.stopImmediatePropagation();
@@ -141,8 +204,40 @@ export function useHorizontalDrag({
       }
 
       hasMoved.current = false;
-      startElement.current = null;
     };
+
+    let isHovered = false;
+
+    const handleMouseEnter = () => {
+      isHovered = true;
+    };
+    const handleMouseLeave = () => {
+      isHovered = false;
+    };
+
+    const handleWheel = (e: WheelEvent) => {
+      if (!wheelScroll || scroll.current.limit === 0) return;
+
+      e.preventDefault();
+      scroll.current.target += (e.deltaY + e.deltaX) * wheelSpeed;
+    };
+
+    const handleKeydown = (e: KeyboardEvent) => {
+      if (!isHovered) return;
+
+      const step = wrapper.clientWidth * 0.8;
+
+      switch (e.key) {
+        case "ArrowLeft":
+          scroll.current.target -= step;
+          break;
+        case "ArrowRight":
+          scroll.current.target += step;
+          break;
+      }
+    };
+
+    let itemCount = content.children.length;
 
     const handleResize = () => {
       if (!content || !wrapper) return;
@@ -151,6 +246,7 @@ export function useHorizontalDrag({
       const wrapperWidth = wrapper.clientWidth;
 
       scroll.current.limit = Math.max(0, contentWidth - wrapperWidth);
+      itemCount = content.children.length;
 
       wrapper.style.cursor = scroll.current.limit > 0 ? "grab" : "";
 
@@ -169,6 +265,8 @@ export function useHorizontalDrag({
 
     const easeOutSine = (t: number) => Math.sin((t * Math.PI) / 2);
 
+    let lastCurrent = -1;
+
     const update = (_: number, deltaTime: number) => {
       scroll.current.target = clamp(
         0,
@@ -186,20 +284,31 @@ export function useHorizontalDrag({
         scroll.current.current = scroll.current.target;
       }
 
-      content.style.transform = `translate3d(${-scroll.current
-        .current}px, 0, 0)`;
+      if (scroll.current.current !== lastCurrent) {
+        lastCurrent = scroll.current.current;
+
+        const progress = scroll.current.limit > 0 ? scroll.current.current / scroll.current.limit : 0;
+        const index = Math.round(progress * (itemCount - 1));
+
+        scroll.current.progress = progress;
+        scroll.current.index = index;
+        onProgressRef.current?.(progress, index);
+      }
+
+      content.style.transform = `translate3d(${-scroll.current.current}px, 0, 0)`;
     };
 
-    Tempus.add(update);
+    gsap.ticker.add(update);
 
     handleResize();
     resizeObserver.observe(content);
 
+    wrapper.addEventListener("mouseenter", handleMouseEnter);
+    wrapper.addEventListener("mouseleave", handleMouseLeave);
     wrapper.addEventListener("mousedown", handleTouchStart);
     wrapper.addEventListener("touchstart", handleTouchStart, {
       passive: false,
     });
-    wrapper.addEventListener("dragstart", handleDragStart);
     wrapper.addEventListener("click", handleClick, true);
 
     window.addEventListener("mousemove", handleTouchMove);
@@ -209,12 +318,18 @@ export function useHorizontalDrag({
     window.addEventListener("touchend", handleTouchEnd);
     window.addEventListener("touchcancel", handleTouchEnd);
     window.addEventListener("resize", handleResize);
+    if (keyboard) window.addEventListener("keydown", handleKeydown);
+    if (wheelScroll)
+      wrapper.addEventListener("wheel", handleWheel, { passive: false });
 
     return () => {
+      gsap.ticker.remove(update);
       resizeObserver.disconnect();
+      linkCleanups.forEach((fn) => fn());
+      wrapper.removeEventListener("mouseenter", handleMouseEnter);
+      wrapper.removeEventListener("mouseleave", handleMouseLeave);
       wrapper.removeEventListener("mousedown", handleTouchStart);
       wrapper.removeEventListener("touchstart", handleTouchStart);
-      wrapper.removeEventListener("dragstart", handleDragStart);
       wrapper.removeEventListener("click", handleClick, true);
 
       window.removeEventListener("mousemove", handleTouchMove);
@@ -224,13 +339,27 @@ export function useHorizontalDrag({
       window.removeEventListener("touchend", handleTouchEnd);
       window.removeEventListener("touchcancel", handleTouchEnd);
       window.removeEventListener("resize", handleResize);
+      if (keyboard) window.removeEventListener("keydown", handleKeydown);
+      if (wheelScroll) wrapper.removeEventListener("wheel", handleWheel);
     };
-  }, [wrapperRef, contentRef, enabled, speed, isMobile, isPageVisible]);
+  }, [
+    wrapperRef,
+    contentRef,
+    enabled,
+    speed,
+    keyboard,
+    wheelScroll,
+    wheelSpeed,
+    isMobile,
+    isPageVisible,
+  ]);
 
   return {
     scroll: scroll.current,
     isDragging: isDragging.current,
     scrollTo,
     scrollToIndex,
+    scrollToNext,
+    scrollToPrev,
   };
 }

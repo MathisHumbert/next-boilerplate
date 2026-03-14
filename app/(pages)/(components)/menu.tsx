@@ -4,7 +4,6 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import Lenis from "lenis";
 import { useEffect, useRef } from "react";
-import { useTempus } from "tempus/react";
 import { useStore } from "@nanostores/react";
 import { FocusTrap } from "focus-trap-react";
 
@@ -38,11 +37,15 @@ export function Menu() {
     }
   }, [isMenuOpened]);
 
-  useTempus((time) => {
-    if (lenisRef.current) {
-      lenisRef.current?.raf(time);
-    }
-  });
+  useEffect(() => {
+    const cb = (time: number) => {
+      if (lenisRef.current && !lenisRef.current?.isStopped) {
+        lenisRef.current?.raf(time * 1000);
+      }
+    };
+    gsap.ticker.add(cb);
+    return () => gsap.ticker.remove(cb);
+  }, []);
 
   const { contextSafe } = useGSAP(() => {}, {
     scope: container,

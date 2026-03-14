@@ -8,7 +8,7 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
 import { delay } from "@/libs/utils";
-import { $areFontsLoaded, $isPageVisible, $isAppMounted } from "@/store/global";
+import { $areFontsLoaded, $isPageVisible, $isAppMounted, initDeviceType } from "@/store/global";
 
 const showPreloader = process.env.NODE_ENV === "development";
 // const showPreloader = true;
@@ -23,6 +23,7 @@ export function Preloader() {
 
 function PreloaderDevelopment() {
   useEffect(() => {
+    initDeviceType();
     document.documentElement.classList.add("loaded", "visible");
     window.dispatchEvent(new Event("resize"));
 
@@ -106,6 +107,7 @@ function PreloaderProduction() {
   };
 
   useEffect(() => {
+    initDeviceType();
     loadFonts();
     loadImages();
     // eslint-disable-next-line react-hooks/exhaustive-deps

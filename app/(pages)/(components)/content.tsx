@@ -10,7 +10,12 @@ import type {
   Accordion as AccordionType,
 } from "@/sanity/sanity.types";
 
-type ContentComponent = (HeroType | HeadingTextType | SliderType | AccordionType) & {
+type ContentComponent = (
+  | HeroType
+  | HeadingTextType
+  | SliderType
+  | AccordionType
+) & {
   _key: string;
 };
 
