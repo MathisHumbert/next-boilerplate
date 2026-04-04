@@ -7,10 +7,10 @@ export function HeadingText(data: HeadingTextType) {
 
   return (
     <section className="p-grid flex h-dvh w-full flex-col justify-between">
-      <h2 className="text-heading">{heading}</h2>
-      <div className="ml-col-6-gap w-col-4 flex flex-col gap-[1.2rem]">
-        <h4 className="text-l">{subtitle}</h4>
-        <p className="text-s">{text}</p>
+      <h2 className="heading">{heading}</h2>
+      <div className="ml-col-gap-6 w-col-4 flex flex-col gap-[1.2rem]">
+        <h4 className="body-l">{subtitle}</h4>
+        <p className="body-s">{text}</p>
       </div>
     </section>
   );

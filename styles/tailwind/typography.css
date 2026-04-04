@@ -1,23 +1,23 @@
-@utility text-heading-l {
+@utility heading-l {
   font-size: 8rem;
 }
 
-@utility text-heading {
+@utility heading {
   font-size: 4rem;
 }
 
-@utility text-l {
+@utility body-l {
   font-size: 2rem;
 }
 
-@utility text-base {
+@utility body {
   font-size: 1.6rem;
 }
 
-@utility text-s {
+@utility body-s {
   font-size: 1.4rem;
 }
 
-@utility text-xs {
+@utility body-xs {
   font-size: 1.2rem;
 }

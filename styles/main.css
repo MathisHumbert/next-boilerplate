@@ -1,12 +1,5 @@
 @import "locomotive-scroll/dist/locomotive-scroll.css";
 
-*,
-*::after,
-*::before {
-  box-sizing: border-box;
-  user-select: none;
-}
-
 html {
   font-size: calc(100vw / var(--sizes-mobile) * 10);
   font-family: var(--font-satoshi);
@@ -64,7 +57,7 @@ main {
   position: relative;
   width: 100vw;
   height: 100%;
-  z-index: var(--z-content);
+  z-index: var(--z-index-content);
 }
 
 .page {
@@ -73,10 +66,10 @@ main {
   height: 100%;
 }
 
-a {
-  color: inherit;
+a,
+button {
+  cursor: pointer;
   outline: none;
-  text-decoration: none;
 }
 
 a:focus-visible,
@@ -94,14 +87,6 @@ summary:focus-visible div {
   outline-offset: 0.3em;
 }
 
-button {
-  background: none;
-  border: none;
-  color: inherit;
-  cursor: pointer;
-  outline: none;
-}
-
 canvas {
   position: fixed;
   left: 0;
@@ -109,7 +94,7 @@ canvas {
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: var(--z-canvas);
+  z-index: var(--z-index-canvas);
 }
 
 [data-animation="appear"] {

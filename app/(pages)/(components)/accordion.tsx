@@ -109,7 +109,7 @@ function AccordionItem({ label, content }: AccordionItemProps) {
         className="list-none py-8"
       >
         <div className="relative flex cursor-pointer items-center justify-between">
-          <span className="text-s tracking-widest uppercase">{label}</span>
+          <span className="body-s tracking-widest uppercase">{label}</span>
           <span className="relative h-[1.2rem] w-[1.2rem]">
             <span className="absolute top-1/2 left-1/2 h-px w-full -translate-x-1/2 -translate-y-1/2 bg-white" />
             <span
@@ -123,7 +123,7 @@ function AccordionItem({ label, content }: AccordionItemProps) {
         </div>
       </summary>
       <div ref={contentRef} className="pt-[1.6rem] pb-[3.2rem]">
-        <p className="max-w-col-8 text-base text-white/60">{content}</p>
+        <p className="max-w-col-8 body text-white/60">{content}</p>
       </div>
     </details>
   );

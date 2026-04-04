@@ -29,18 +29,18 @@ export function LinkSlider(data: SliderType) {
   return (
     <section className="p-grid flex w-full flex-col gap-8">
       <div className="flex items-center justify-between">
-        <h2 className="text-xs uppercase">Slider</h2>
+        <h2 className="body-xs uppercase">Slider</h2>
         <div className="flex gap-4">
           <button
             onClick={() => slider?.goToPrev()}
-            className="text-xs uppercase disabled:opacity-30"
+            className="body-xs uppercase disabled:opacity-30"
             disabled={currentSlide === 0}
           >
             Prev
           </button>
           <button
             onClick={() => slider?.goToNext()}
-            className="text-xs uppercase disabled:opacity-30"
+            className="body-xs uppercase disabled:opacity-30"
             disabled={currentSlide === images?.length! - 4}
           >
             Next
@@ -50,7 +50,7 @@ export function LinkSlider(data: SliderType) {
       <div className="flex overflow-hidden" ref={ref}>
         {images &&
           images.map((item, index) => (
-            <div className="w-col-3-gap ] relative shrink-0 pr-8" key={index}>
+            <div className="w-col-gap-3 ] relative shrink-0 pr-8" key={index}>
               <Link href="/about" className="flex flex-col gap-[1.2rem]">
                 <figure className="relative aspect-square w-full">
                   {item.image?.asset && (
@@ -61,8 +61,8 @@ export function LinkSlider(data: SliderType) {
                     />
                   )}
                 </figure>
-                <p className="text-xs uppercase">Lorem.</p>
-                <p className="text-s">
+                <p className="body-xs uppercase">Lorem.</p>
+                <p className="body-s">
                   Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                   Culpa iure voluptatibus iusto? Vitae, asperiores.
                 </p>

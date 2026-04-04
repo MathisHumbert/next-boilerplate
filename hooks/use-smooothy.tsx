@@ -98,7 +98,21 @@ export function useSmooothy({
 
   const refCallback = (node: HTMLElement | null) => {
     if (node && !slider) {
-      const instance = new Core(node, config);
+      const userOnUpdate = config.onUpdate;
+      const instance = new Core(node, {
+        ...config,
+        onUpdate: (core: Core) => {
+          if (Math.abs(core.speed) < 0.001) {
+            core.items.forEach((item) => {
+              if (!item.style.transform) return;
+              const x = new DOMMatrix(item.style.transform).m41;
+              item.style.transform = `translate3d(${Math.round(x)}px, 0px, 0px)`;
+            });
+          }
+
+          userOnUpdate?.(core);
+        },
+      });
       gsap.ticker.add(instance.update.bind(instance));
       setSlider(instance);
     }

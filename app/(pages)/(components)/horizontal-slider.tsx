@@ -30,18 +30,18 @@ export function HorizontalSlider(data: SliderType) {
   return (
     <section className="p-grid flex w-full flex-col gap-8">
       <div className="flex items-center justify-between">
-        <h2 className="text-xs uppercase">Slider</h2>
+        <h2 className="body-xs uppercase">Slider</h2>
         <div className="flex gap-4">
           <button
             onClick={() => scrollToPrev()}
-            className="text-xs uppercase disabled:opacity-30"
+            className="body-xs uppercase disabled:opacity-30"
             disabled={currentSlide === 0}
           >
             Prev
           </button>
           <button
             onClick={() => scrollToNext()}
-            className="text-xs uppercase disabled:opacity-30"
+            className="body-xs uppercase disabled:opacity-30"
             disabled={currentSlide === images?.length! - 1}
           >
             Next
@@ -49,11 +49,11 @@ export function HorizontalSlider(data: SliderType) {
         </div>
       </div>
       <div className="overflow-x-clip" ref={horizontalWrapperRef}>
-        <div className="gap-grid flex" ref={horizontalContentRef}>
+        <div className="gap-gutter flex" ref={horizontalContentRef}>
           {images &&
             images.map((item, index) => (
               <div
-                className="w-col-3-gap relative flex shrink-0 flex-col gap-[1.2rem]"
+                className="w-col-gap-3 relative flex shrink-0 flex-col gap-[1.2rem]"
                 key={index}
               >
                 <figure className="relative aspect-square w-full">
@@ -65,8 +65,8 @@ export function HorizontalSlider(data: SliderType) {
                     />
                   )}
                 </figure>
-                <p className="text-xs uppercase">Lorem.</p>
-                <p className="text-s">
+                <p className="body-xs uppercase">Lorem.</p>
+                <p className="body-s">
                   Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                   Culpa iure voluptatibus iusto? Vitae, asperiores.
                 </p>

@@ -10,7 +10,7 @@ export function Hero(data: HeroType) {
   return (
     <section className="p-grid flex h-dvh w-full flex-col justify-center gap-40">
       {subtitle && (
-        <p className="ml-col-6-gap text-xs">
+        <p className="ml-col-gap-6 body-xs">
           {subtitle.split("\n").map((line, index) => (
             <React.Fragment key={index}>
               {line}
@@ -21,9 +21,9 @@ export function Hero(data: HeroType) {
         </p>
       )}
       <header>
-        <h1 className="text-heading-l flex flex-col font-bold uppercase">
+        <h1 className="heading-l flex flex-col font-bold uppercase">
           <span>{titleLeft}</span>
-          <span className="ml-col-6-gap">{titleRight}</span>
+          <span className="ml-col-gap-6">{titleRight}</span>
         </h1>
       </header>
     </section>

@@ -75,7 +75,7 @@ Complex animations (menu, accordion, transitions) are handled directly with GSAP
 - Registers SplitText and ScrollTrigger plugins
 - Disables default RAF — delegates to Tempus animation loop
 - Clears scroll memory for manual scroll control
-- Easing defined as CSS variables in `styles/root.css` (40+ easing functions)
+- Easing defined as CSS variables in `styles/tailwind.css` `@theme` block (40+ easing functions)
 
 ### Sanity Integration
 
@@ -99,8 +99,8 @@ Complex animations (menu, accordion, transitions) are handled directly with GSAP
 
 Custom hooks in `hooks/`:
 
-- `use-escape-keydown.ts` — Escape key listener with disabled flag
-- `use-smooothy.tsx` — wraps smooothy carousel, uses Tempus for animation loop
+- `use-escape-keydown.ts` — Escape key listener with disabled flag (not used in menu — FocusTrap handles Escape via `onDeactivate`)
+- `use-smooothy.tsx` — wraps smooothy carousel; pixel-snaps item transforms when `Math.abs(core.speed) < 0.001` to avoid subpixel rendering
 - `use-horizontal-drag.tsx` — horizontal drag/scroll with mouse and touch support, smooth interpolation
 
 ### Styling
@@ -108,17 +108,15 @@ Custom hooks in `hooks/`:
 - **Tailwind CSS v4** with `@tailwindcss/postcss` plugin (no traditional config file)
 - CSS-first configuration using `@import "tailwindcss"` directive
 - Modular CSS structure in `/styles/`:
-  - `index.css` — main entry point (imports tailwindcss, root.css, global.css, tailwind.css)
-  - `root.css` — CSS custom properties: colors, fonts, grid, z-index, 40+ easing functions, transition durations
-  - `global.css` — base styles, scroll wrapper, animation keyframes and `[data-animation]` selectors
-  - `tailwind.css` — imports all utility files from `styles/tailwind/`
+  - `index.css` — main entry point (imports tailwindcss, main.css, tailwind.css, tailwind/* utilities)
+  - `main.css` — base styles, CSS custom properties, scroll wrapper, animation keyframes and `[data-animation]` selectors
+  - `tailwind.css` — `@theme` block: colors (`--color-*`), fonts, grid, z-index (`--z-index-*`), 40+ easing functions (`--ease-*`), transition durations (`--transition-duration-*`)
   - `styles/tailwind/` subdirectory:
-    - `colors.css` — bg/text/border utilities
-    - `easing.css` — transition-timing and duration utilities, hover shorthands
-    - `grid.css` — col widths, gaps, padding/margin by columns
+    - `easing.css` — `duration-*` utilities + `hover-fade/color/transform` shorthands (ease-* auto-generated from `@theme`)
+    - `grid.css` — functional utilities using `--value(integer)`: `w/min-w/max-w/ml/mr/mt/mb/mx/my/pl/pr/pt/pb/px/py-col-*` and `-col-gap-*` variants; `gap-gutter` (column gutter), `gap-grid` (margin)
     - `helpers.css` — `cover`, `img-cover`, `center`, `scroll-wrapper`
-    - `typography.css` — `text-heading-l` (8rem) → `text-xs` (1.2rem)
-    - `z-index.css` — `z-canvas` → `z-grid`
+    - `typography.css` — semantic classes without `text-` prefix: `heading-l` (8rem), `heading` (4rem), `body-l` (2rem), `body` (1.6rem), `body-s` (1.4rem), `body-xs` (1.2rem)
+    - `z-index.css` — `z-canvas` → `z-grid` (references `--z-index-*` variables)
 
 ### Page Transitions
 

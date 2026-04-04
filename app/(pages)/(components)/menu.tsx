@@ -8,7 +8,6 @@ import { useStore } from "@nanostores/react";
 import { FocusTrap } from "focus-trap-react";
 
 import { $isMenuOpened } from "@/store/global";
-import { useEscapeKeydown } from "@/hooks/use-escape-keydown";
 
 export function Menu() {
   const container = useRef<HTMLDivElement>(null);
@@ -56,7 +55,7 @@ export function Menu() {
       if (isMenuOpened) {
         const tl = gsap.timeline({
           defaults: {
-            duration: 1.5,
+            duration: 0.9,
             ease: "expo.out",
           },
         });
@@ -86,7 +85,7 @@ export function Menu() {
   const hideMenu = contextSafe(() => {
     const tl = gsap.timeline({
       defaults: {
-        duration: 1.25,
+        duration: 0.6,
         ease: "expo.out",
       },
       onComplete: () => {
@@ -110,12 +109,11 @@ export function Menu() {
     );
   });
 
-  useEscapeKeydown(() => hideMenu(), !isMenuOpened);
-
   return (
     <FocusTrap
       active={isMenuOpened}
       focusTrapOptions={{
+        onDeactivate: hideMenu,
         checkCanFocusTrap: (containers) => {
           const checks = containers.map(
             (el) =>
@@ -142,12 +140,12 @@ export function Menu() {
         >
           <div className="p-grid relative flex h-[150dvh] items-center">
             <button
-              className="top-grid right-grid text-s fixed uppercase"
+              className="top-grid right-grid body-s fixed uppercase"
               onClick={hideMenu}
             >
               close
             </button>
-            <p className="text-base">
+            <p className="body">
               Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ad
               doloremque molestias enim neque, ab omnis officia, voluptatem at
               unde quis perspiciatis, maxime deleniti. Quae necessitatibus rem
