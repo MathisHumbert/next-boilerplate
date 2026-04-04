@@ -27,11 +27,11 @@ export function Grid() {
   if (!isVisible) return null;
 
   return (
-    <div className="fixed left-0 top-0 w-full max-w-[100vw] h-dvh flex justify-center gap-grid px-grid z-grid pointer-events-none">
+    <div className="gap-grid px-grid z-grid pointer-events-none fixed top-0 left-0 flex h-dvh w-full max-w-[100vw] justify-center">
       {Array.from({ length: gridCount }, (_, index) => (
-        <div key={index} className="w-full h-full bg-red-10" />
+        <div key={index} className="bg-red-10 h-full w-full" />
       ))}
-      <div className="absolute left-0 top-1/2 translate-y-[-50%] w-full h-8 bg-red-10" />
+      <div className="bg-red-10 absolute top-1/2 left-0 h-8 w-full translate-y-[-50%]" />
     </div>
   );
 }

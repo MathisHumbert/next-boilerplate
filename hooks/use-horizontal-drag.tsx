@@ -287,7 +287,10 @@ export function useHorizontalDrag({
       if (scroll.current.current !== lastCurrent) {
         lastCurrent = scroll.current.current;
 
-        const progress = scroll.current.limit > 0 ? scroll.current.current / scroll.current.limit : 0;
+        const progress =
+          scroll.current.limit > 0
+            ? scroll.current.current / scroll.current.limit
+            : 0;
         const index = Math.round(progress * (itemCount - 1));
 
         scroll.current.progress = progress;

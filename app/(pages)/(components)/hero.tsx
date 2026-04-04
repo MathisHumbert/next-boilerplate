@@ -8,9 +8,9 @@ export function Hero(data: HeroType) {
   const { subtitle, titleLeft, titleRight } = data;
 
   return (
-    <section className="w-full h-dvh flex flex-col justify-center gap-40 p-grid">
+    <section className="p-grid flex h-dvh w-full flex-col justify-center gap-40">
       {subtitle && (
-        <p className="text-xs ml-col-6-gap">
+        <p className="ml-col-6-gap text-xs">
           {subtitle.split("\n").map((line, index) => (
             <React.Fragment key={index}>
               {line}
@@ -21,7 +21,7 @@ export function Hero(data: HeroType) {
         </p>
       )}
       <header>
-        <h1 className="text-heading-l font-bold uppercase flex flex-col">
+        <h1 className="text-heading-l flex flex-col font-bold uppercase">
           <span>{titleLeft}</span>
           <span className="ml-col-6-gap">{titleRight}</span>
         </h1>

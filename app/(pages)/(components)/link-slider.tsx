@@ -27,7 +27,7 @@ export function LinkSlider(data: SliderType) {
   const { images } = data;
 
   return (
-    <section className="w-full flex flex-col gap-8 p-grid">
+    <section className="p-grid flex w-full flex-col gap-8">
       <div className="flex items-center justify-between">
         <h2 className="text-xs uppercase">Slider</h2>
         <div className="flex gap-4">
@@ -50,9 +50,9 @@ export function LinkSlider(data: SliderType) {
       <div className="flex overflow-hidden" ref={ref}>
         {images &&
           images.map((item, index) => (
-            <div className="relative w-col-3-gap shrink-0 ] pr-8" key={index}>
+            <div className="w-col-3-gap ] relative shrink-0 pr-8" key={index}>
               <Link href="/about" className="flex flex-col gap-[1.2rem]">
-                <figure className="relative w-full aspect-square">
+                <figure className="relative aspect-square w-full">
                   {item.image?.asset && (
                     <SanityImage
                       image={item.image}

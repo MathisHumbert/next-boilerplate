@@ -6,9 +6,9 @@ export function HeadingText(data: HeadingTextType) {
   const { heading, subtitle, text } = data;
 
   return (
-    <section className="w-full h-dvh flex flex-col justify-between p-grid ">
+    <section className="p-grid flex h-dvh w-full flex-col justify-between">
       <h2 className="text-heading">{heading}</h2>
-      <div className="flex flex-col gap-[1.2rem] ml-col-6-gap w-col-4">
+      <div className="ml-col-6-gap w-col-4 flex flex-col gap-[1.2rem]">
         <h4 className="text-l">{subtitle}</h4>
         <p className="text-s">{text}</p>
       </div>

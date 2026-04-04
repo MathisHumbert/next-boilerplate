@@ -46,7 +46,9 @@ export default {
     prepare({ items }: { items?: Array<{ label?: string }> }) {
       return {
         title: "Accordion",
-        subtitle: items ? `${items.length} item${items.length !== 1 ? "s" : ""}` : "No items",
+        subtitle: items
+          ? `${items.length} item${items.length !== 1 ? "s" : ""}`
+          : "No items",
       };
     },
   },

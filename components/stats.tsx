@@ -13,8 +13,12 @@ export function Stats() {
     document.body.appendChild(stats.dom);
     statsRef.current = stats;
 
-    const beginTicker = () => { stats.begin(); };
-    const endTicker = () => { stats.end(); };
+    const beginTicker = () => {
+      stats.begin();
+    };
+    const endTicker = () => {
+      stats.end();
+    };
 
     gsap.ticker.add(beginTicker, false, true);
     gsap.ticker.add(endTicker);

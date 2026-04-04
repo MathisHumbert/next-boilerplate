@@ -8,7 +8,12 @@ import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
 import { delay } from "@/libs/utils";
-import { $areFontsLoaded, $isPageVisible, $isAppMounted, initDeviceType } from "@/store/global";
+import {
+  $areFontsLoaded,
+  $isPageVisible,
+  $isAppMounted,
+  initDeviceType,
+} from "@/store/global";
 
 const showPreloader = process.env.NODE_ENV === "development";
 // const showPreloader = true;

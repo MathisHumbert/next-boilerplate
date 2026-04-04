@@ -29,7 +29,10 @@ function handleLinks(wrapper: HTMLElement) {
 
     const handleMouseMove = (e: MouseEvent) => {
       if (!startTime) return;
-      if (Math.abs(e.clientX - startX) > 5 || Math.abs(e.clientY - startY) > 5) {
+      if (
+        Math.abs(e.clientX - startX) > 5 ||
+        Math.abs(e.clientY - startY) > 5
+      ) {
         isDragging = true;
       }
     };
@@ -64,7 +67,8 @@ function handleKeyboard(instance: Core) {
 
     if (/^[0-9]$/.test(e.key)) {
       const index = parseInt(e.key);
-      if (!instance.config.infinite && index > instance.items.length - 1) return;
+      if (!instance.config.infinite && index > instance.items.length - 1)
+        return;
       instance.goToIndex(index);
       return;
     }
@@ -84,7 +88,11 @@ function handleKeyboard(instance: Core) {
   return () => window.removeEventListener("keydown", onKeydown);
 }
 
-export function useSmooothy({ link, keyboard, ...config }: UseSmooothyConfig = {}) {
+export function useSmooothy({
+  link,
+  keyboard,
+  ...config
+}: UseSmooothyConfig = {}) {
   const sliderRef = useRef<HTMLElement | null>(null);
   const [slider, setSlider] = useState<Core | null>(null);
 

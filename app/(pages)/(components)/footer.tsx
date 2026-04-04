@@ -19,22 +19,22 @@ export function Footer({ nextPage }: FooterProps) {
   };
 
   return (
-    <footer className="relative flex gap-grid py-48 px-grid">
+    <footer className="gap-grid px-grid relative flex py-48">
       <span
         data-scroll
         data-scroll-class="is-inview"
         data-animation="line"
-        className="absolute top-0 left-grid w-[calc(100%-var(--grid-margin)*2)] h-px bg-current"
+        className="left-grid absolute top-0 h-px w-[calc(100%-var(--grid-margin)*2)] bg-current"
       />
       <TextReveal>
-        <p className="text-xs uppercase w-col-1">Next Page</p>
+        <p className="w-col-1 text-xs uppercase">Next Page</p>
       </TextReveal>
 
       <TextReveal>
         <TransitionLink
           href={getHref()}
           scroll={false}
-          className="text-xs uppercase ml-col-2-gap"
+          className="ml-col-2-gap text-xs uppercase"
         >
           {getLabel()}
         </TransitionLink>

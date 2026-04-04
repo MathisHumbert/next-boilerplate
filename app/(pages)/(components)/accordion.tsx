@@ -102,18 +102,18 @@ function AccordionItem({ label, content }: AccordionItemProps) {
   });
 
   return (
-    <details ref={detailsRef} className="border-b overflow-clip">
+    <details ref={detailsRef} className="overflow-clip border-b">
       <summary
         ref={summaryRef}
         onClick={handleToggle}
         className="list-none py-8"
       >
-        <div className="relative flex items-center justify-between cursor-pointer">
-          <span className="text-s uppercase tracking-widest">{label}</span>
-          <span className="relative w-[1.2rem] h-[1.2rem]">
-            <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-px bg-white" />
+        <div className="relative flex cursor-pointer items-center justify-between">
+          <span className="text-s tracking-widest uppercase">{label}</span>
+          <span className="relative h-[1.2rem] w-[1.2rem]">
+            <span className="absolute top-1/2 left-1/2 h-px w-full -translate-x-1/2 -translate-y-1/2 bg-white" />
             <span
-              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-px h-full bg-white transition-transform duration-[0.4s]"
+              className="absolute top-1/2 left-1/2 h-full w-px -translate-x-1/2 -translate-y-1/2 bg-white transition-transform duration-[0.4s]"
               style={{
                 transitionTimingFunction: "ease-in-out",
                 transform: isOpen ? "scaleY(0)" : "scaleY(1)",
@@ -122,8 +122,8 @@ function AccordionItem({ label, content }: AccordionItemProps) {
           </span>
         </div>
       </summary>
-      <div ref={contentRef} className="pb-[3.2rem] pt-[1.6rem]">
-        <p className="text-base text-white/60 max-w-col-8">{content}</p>
+      <div ref={contentRef} className="pt-[1.6rem] pb-[3.2rem]">
+        <p className="max-w-col-8 text-base text-white/60">{content}</p>
       </div>
     </details>
   );

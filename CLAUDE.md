@@ -57,12 +57,14 @@ Custom event system via `EventEmitter` instance exported from `libs/utils.ts`.
 Two layers of animation:
 
 **1. CSS animations** (no React component needed) — triggered by adding `.is-inview` class via LocomotiveScroll:
+
 - `data-animation="appear"` — fade in (1s)
 - `data-animation="slide-up"` — slide up with optional opacity (0.6s)
 - `data-animation="line"` — scale from origin (1.25s)
 - `data-animation="text"` — text line reveal (1.5s)
 
 **2. React animation component** in `app/(pages)/(animations)/`:
+
 - `text-reveal.tsx` — GSAP SplitText reveal on scroll (props: `scrollPosition`, `scrollOffset`, `delay`, `rotate`, `ignoreFold`)
 
 Complex animations (menu, accordion, transitions) are handled directly with GSAP in the component files.
@@ -96,6 +98,7 @@ Complex animations (menu, accordion, transitions) are handled directly with GSAP
 ### Hooks
 
 Custom hooks in `hooks/`:
+
 - `use-escape-keydown.ts` — Escape key listener with disabled flag
 - `use-smooothy.tsx` — wraps smooothy carousel, uses Tempus for animation loop
 - `use-horizontal-drag.tsx` — horizontal drag/scroll with mouse and touch support, smooth interpolation

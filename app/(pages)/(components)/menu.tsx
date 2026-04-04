@@ -133,16 +133,16 @@ export function Menu() {
       }}
     >
       <div
-        className="fixed left-0 top-0 w-full h-dvh hidden bg-white text-black z-menu"
+        className="z-menu fixed top-0 left-0 hidden h-dvh w-full bg-white text-black"
         ref={container}
       >
         <div
-          className="relative overflow-x-clip overflow-y-scroll h-dvh scroll-wrapper"
+          className="scroll-wrapper relative h-dvh overflow-x-clip overflow-y-scroll"
           ref={scrollWrapper}
         >
-          <div className="relative h-[150dvh] flex items-center p-grid">
+          <div className="p-grid relative flex h-[150dvh] items-center">
             <button
-              className="fixed top-grid right-grid text-s uppercase"
+              className="top-grid right-grid text-s fixed uppercase"
               onClick={hideMenu}
             >
               close

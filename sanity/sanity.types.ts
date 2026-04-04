@@ -32,9 +32,11 @@ export type CustomImage = {
 
 export type Slider = {
   _type: "slider";
-  images?: Array<{
-    _key: string;
-  } & CustomImage>;
+  images?: Array<
+    {
+      _key: string;
+    } & CustomImage
+  >;
 };
 
 export type Hero = {
@@ -93,15 +95,20 @@ export type About = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  content?: Array<{
-    _key: string;
-  } & Hero | {
-    _key: string;
-  } & HeadingText | {
-    _key: string;
-  } & Slider | {
-    _key: string;
-  } & Accordion>;
+  content?: Array<
+    | ({
+        _key: string;
+      } & Hero)
+    | ({
+        _key: string;
+      } & HeadingText)
+    | ({
+        _key: string;
+      } & Slider)
+    | ({
+        _key: string;
+      } & Accordion)
+  >;
   seo?: Seo;
   settings?: PageSettings;
 };
@@ -112,13 +119,17 @@ export type Home = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
-  content?: Array<{
-    _key: string;
-  } & Hero | {
-    _key: string;
-  } & HeadingText | {
-    _key: string;
-  } & Slider>;
+  content?: Array<
+    | ({
+        _key: string;
+      } & Hero)
+    | ({
+        _key: string;
+      } & HeadingText)
+    | ({
+        _key: string;
+      } & Slider)
+  >;
   seo?: Seo;
   settings?: PageSettings;
 };
@@ -127,17 +138,19 @@ export type PageSettings = {
   _type: "page-settings";
   theme?: "light" | "dark";
   showFooter?: boolean;
-  footerPage?: {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "home";
-  } | {
-    _ref: string;
-    _type: "reference";
-    _weak?: boolean;
-    [internalGroqTypeReferenceTo]?: "about";
-  };
+  footerPage?:
+    | {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "home";
+      }
+    | {
+        _ref: string;
+        _type: "reference";
+        _weak?: boolean;
+        [internalGroqTypeReferenceTo]?: "about";
+      };
 };
 
 export type Seo = {
@@ -286,5 +299,27 @@ export type SanityAssetSourceData = {
   url?: string;
 };
 
-export type AllSanitySchemaTypes = CustomImage | Slider | Hero | HeadingText | Accordion | Settings | About | Home | PageSettings | Seo | MediaTag | SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityImageHotspot | SanityImageCrop | SanityFileAsset | SanityImageAsset | SanityImageMetadata | Geopoint | Slug | SanityAssetSourceData;
+export type AllSanitySchemaTypes =
+  | CustomImage
+  | Slider
+  | Hero
+  | HeadingText
+  | Accordion
+  | Settings
+  | About
+  | Home
+  | PageSettings
+  | Seo
+  | MediaTag
+  | SanityImagePaletteSwatch
+  | SanityImagePalette
+  | SanityImageDimensions
+  | SanityImageHotspot
+  | SanityImageCrop
+  | SanityFileAsset
+  | SanityImageAsset
+  | SanityImageMetadata
+  | Geopoint
+  | Slug
+  | SanityAssetSourceData;
 export declare const internalGroqTypeReferenceTo: unique symbol;

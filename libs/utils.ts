@@ -5,7 +5,7 @@ export const events = new EventEmitter();
 
 export function debounce<T extends (...args: any[]) => any>(
   func: T,
-  wait: number
+  wait: number,
 ): T & { cancel: () => void } {
   let timeout: NodeJS.Timeout;
 
